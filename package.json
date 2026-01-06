@@ -1,0 +1,22 @@
+{
+  "name": "convert-pdf-to-1-4",
+  "version": "1.0.0",
+  "description": "PDF converter to revert to 1.4 specs",
+  "keywords": [
+    "pdf",
+    "converter",
+    "pdf1.4"
+  ],
+  "license": "ISC",
+  "author": "Aditiya Sidabutar",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-fileupload": "^1.5.2",
+    "temporary": "^1.1.0"
+  }
+}

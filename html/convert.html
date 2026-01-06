@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <title>Convert PDF ke versi 1.4</title>
+</head>
+
+<body>
+    <h1>Convert PDF ke versi 1.4</h1>
+    <form id="uploadpdf" action="/" enctype="multipart/form-data" method="post">
+        <div>PDF Version: <span id="pdfVersion"></span></div>
+        <input type="file" id="pdffile" name="pdffilename" accept="application/pdf">
+        <input type="submit" value="Kirim" id="submit">
+    </form>
+    <script>
+        // wait for input to be "changed"
+        pdffile.addEventListener('change', (e) => {
+
+            // grab the selected file
+            let [file] = e.target.files;
+
+            if (!file) return;
+
+            // use a FileReader
+            let reader = new FileReader();
+            reader.onload = (e) => {
+
+                // read the content
+                let versionString = e.target.result;
+                pdfVersion.innerText = versionString;
+            };
+
+            // PDF file should start something like '%PDF-1.3'
+            // grab only the bits we need
+            reader.readAsText(file.slice(5, 8));
+        })
+    </script>
+</body>
+
+</html>
