@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    container_name: convert-pdf-to-1-4
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    command: node app.js
+    restart: unless-stopped
