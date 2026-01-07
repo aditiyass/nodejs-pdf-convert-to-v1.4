@@ -4,10 +4,24 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const fileUpload = require('express-fileupload');
-var exec = require('child_process').exec;
-var tmp = require('temporary');
+const exec = require('child_process').exec;
+const tmp = require('temporary');
+const session = require('express-session');
 
 const PORT = 3000;
+
+// pengaturan session
+app.use(session({
+    secret: "3829a56c99d66e0174f48ba749640e43d3045a9dc6ef9d14519aa687e3e0d3f1",
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        sameSite: 'strict',
+        secure: false,
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000,
+    }
+}));
 
 // aktifkan upload file
 app.use(fileUpload({
@@ -22,6 +36,9 @@ app.get('/', (req, res) => {
     // res.status(200).send("<h1>Hello GFG Learner!</h1>");
     res.sendFile(path.join(__dirname, '/html/convert.html'));
 });
+
+// pakai folder public
+app.use(express.static('public'))
 
 // upload file pdf
 app.post('/', async (req, res) => {
